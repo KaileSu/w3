@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome Login</title>
+<script>
+    console.log("test");
+
+</script>
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+
+
+
+
+
+</head>
+<body>
+
+<h1>Test for Login</h1>
+
+<form action="/test1"method="post">
+    User name by email:<br>
+    <input type="email"name="username"> <br>
+    User password:<br>
+    <input type="password"name="psw"> <br>
+    <input type="submit" value="OK">
+
+</form>
+
+
+<h1>jQuery AJAX method for Login</h1>
+
+<form id='loginform'>
+    User name by email:<br>
+    <input type="email" name="email" id="email"> <br>
+    User password:<br>
+    <input type="password" name="password" id="psw"> <br>
+    <input type="submit" name="submit" login>
+
+</form>
+
+<script>
+// type="text/javascript" src="index.js">
+
+    $(document).ready(function() {
+
+    $('#loginform').submit(function(){
+        
+
+        var formData = {
+            username: $("#email").val(),
+            psw: $("#psw").val()
+        };
+
+        datastr = JSON.stringify(formData);
+       // alert("datar:"+datastr);
+
+
+        $.ajax({
+            type : "POST",
+            contentType : "application/json",
+            url : "/test1",
+            dataType : 'json',
+            data: JSON.stringify(formData),
+            success: function(){
+                alert("sucsess");
+                },
+            error : function() {
+               alert("Error!");
+               console.log("ERROR");
+               }
+
+
+        })
+    });
+});
+
+</script>
+
+</body>
+</html>
