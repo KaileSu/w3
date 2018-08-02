@@ -2,17 +2,47 @@
 <html>
 <head>
 <title>Welcome Login</title>
-<script>
-    console.log("test");
 
-</script>
 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
 
 
+<script>
+    // type="text/javascript" src="index.js">
+    
+    $(document).ready(function() {
+    
+        $('button').click(function(){
+            
+    
+            var formData = {
+                username: $("#email").val(),
+                psw: $("#psw").val()
+            };
+    
+            datastr = JSON.stringify(formData);
+           // alert("datar:"+datastr);
+    
+    
+            $.ajax({
+                type : "POST",
+                contentType : "application/json",
+                url : "/test2",
+                dataType : 'json',
+                data: JSON.stringify(formData),
 
+                success: function(result){
+                    console.log(result);
+                }
+    
+    
+            })
+        });
+    });
+    
+    </script>
 
 
 </head>
@@ -37,47 +67,14 @@
     <input type="email" name="email" id="email"> <br>
     User password:<br>
     <input type="password" name="password" id="psw"> <br>
-    <input type="submit" name="submit" login>
-
+    
 </form>
 
-<script>
-// type="text/javascript" src="index.js">
-
-    $(document).ready(function() {
-
-    $('#loginform').submit(function(){
-        
-
-        var formData = {
-            username: $("#email").val(),
-            psw: $("#psw").val()
-        };
-
-        datastr = JSON.stringify(formData);
-       // alert("datar:"+datastr);
+<button>AIAX Method</button>
 
 
-        $.ajax({
-            type : "POST",
-            contentType : "application/json",
-            url : "/test1",
-            dataType : 'json',
-            data: JSON.stringify(formData),
-            success: function(){
-                alert("sucsess");
-                },
-            error : function() {
-               alert("Error!");
-               console.log("ERROR");
-               }
 
 
-        })
-    });
-});
-
-</script>
 
 </body>
 </html>

@@ -43,3 +43,23 @@ app.post('/test1', function (req, res) {
     });
 
 });
+
+
+app.post('/test2', function (req, res) {
+    var u = req.body.username;
+    var p = req.body.psw;
+    c= u+":"+p;
+    console.log(c);
+    fs.readFile('www/myfirst.html', 'utf8', function(err, data) {
+        if (err) throw err;
+        var pos = data.search(c);
+        var obj = {"ok":false,errors:{}};
+        var obj2 = {"ok":true};
+        if (pos == -1) {
+           res.json(obj);
+        } else {
+           res.json(obj2);
+        }
+    });
+
+});
